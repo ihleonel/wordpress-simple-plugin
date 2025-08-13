@@ -1,6 +1,6 @@
 services:
   app:
-    image: wordpress
+    build: .
     ports:
       - 8080:80
     environment:
@@ -8,8 +8,10 @@ services:
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_DEBUG: 1
     volumes:
-      - wordpress:/var/www/html
+      - ./wp:/var/www/html
+      - ./plugins/todo:/var/www/html/wp-content/plugins/todo:delegated
 
   db:
     image: mysql:8.0
@@ -22,5 +24,4 @@ services:
       - db:/var/lib/mysql
 
 volumes:
-  wordpress:
   db:

@@ -9,9 +9,13 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
       WORDPRESS_DEBUG: 1
+      XDEBUG_CONFIG: "client_host=host.docker.internal"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./wp:/var/www/html
-      - ./plugins/todo:/var/www/html/wp-content/plugins/todo:delegated
+      - ./plugins/todo:/var/www/html/wp-content/plugins/todo
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
   db:
     image: mysql:8.0

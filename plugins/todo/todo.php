@@ -13,6 +13,5 @@
  */
 
 echo "Testing Xdebug connection...\n";
-$test = "breakpoint here"; // <- Pon breakpoint en esta línea
-var_dump($test);
-echo "If you see this, Xdebug didn't stop\n";
+$test = "breakpoint here";
+$message = "Hello, world!";
